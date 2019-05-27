@@ -1,10 +1,10 @@
-
-
 //导入 Material UI 组件库
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'TestDart.dart';
 
+void main() => runApp(MyApp());
 
 //当前应用，继承自StatelessWidget，表示其是无状态的Widget
 class MyApp extends StatelessWidget {
@@ -21,6 +21,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
 
+      //注册路由表
+      routes: {
+        "new_page": (context)=>NewPage()
+      },
+
       //应用首页
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -29,7 +34,6 @@ class MyApp extends StatelessWidget {
 
 //首页，继承自StatefulWidget，表示其是一个有状态的Widget
 class MyHomePage extends StatefulWidget {
-
   final String title;
 
   //Dart中用分号代替空方法体，参数是可选参数
@@ -74,13 +78,26 @@ class MyHomePageState extends State<MyHomePage> {
             FlatButton(
               child: Text("Open New Page!"),
               textColor: Colors.green,
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(builder:(context){
-                      return new NewPage();
-                    })
-                );
+              onPressed: () {
+//                Navigator.push(context,
+//                    //builder类型为函数类型，传入BuildContext，返回Widget,此处则为匿名函数
+//                    CupertinoPageRoute(builder: (context)=>NewPage())
+//                );
+                Navigator.pushNamed(context, "new_page");
+              },
+            ),
+            FlatButton(
+              child: Text("Test Async!"),
+              textColor: Colors.green,
+              onPressed: () {
+                TestDart().testAsync();
+              },
+            ),
+            FlatButton(
+              child: Text("Test Async2!"),
+              textColor: Colors.green,
+              onPressed: () {
+                TestDart().testAsync2();
               },
             )
           ],
@@ -97,11 +114,12 @@ class MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
-class NewPage extends StatelessWidget{
-
+class NewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //获取路由参数
+    var args = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("New App!"),
@@ -111,5 +129,4 @@ class NewPage extends StatelessWidget{
       ),
     );
   }
-
 }
