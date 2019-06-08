@@ -52,56 +52,72 @@ class MyHomePage extends StatelessWidget {
       ),
 
       //界面的布局主体
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.only(left: 8, right: 8),
         //将其所有子widget沿屏幕垂直方向依次排列
         child: Column(
-          //主轴对齐方式
+          //主轴对齐方式（Column中 start:从上往下，end：从下往上)
           mainAxisAlignment: MainAxisAlignment.start,
-          //次轴对齐方式
+          //次轴对齐方式（Column中 start:左对齐，end:右对齐）
           crossAxisAlignment: CrossAxisAlignment.start,
+          //Column中 从下往上：up  从上往下：down
           verticalDirection: VerticalDirection.down,
+          //主轴的尺寸大小
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            FlatButton(
-              child: Text("基础控件测试!"),
-              textColor: Colors.green,
-              onPressed: () {
-//                Navigator.push(context,
-//                    //builder类型为函数类型，传入BuildContext，返回Widget,此处则为匿名函数
-//                    CupertinoPageRoute(builder: (context)=>NewPage())
-//                );
-                Navigator.pushNamed(context, "one_page");
-              },
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: FlatButton(
+                child: Text("基础控件测试!"),
+                //按钮背景色
+                color: Colors.grey,
+                textColor: Colors.black,
+                shape: RoundedRectangleBorder(),
+                onPressed: () {
+                  /*Navigator.push(context,
+                    //builder类型为函数类型，传入BuildContext，返回Widget,此处则为匿名函数
+                    CupertinoPageRoute(builder: (context)=>OnePage())
+                );*/
+                  Navigator.pushNamed(context, "one_page");
+                },
+              ),
             ),
-            FlatButton(
-              child: Text("Open New Page!"),
-              textColor: Colors.green,
-              onPressed: () {
-//                Navigator.push(context,
-//                    //builder类型为函数类型，传入BuildContext，返回Widget,此处则为匿名函数
-//                    CupertinoPageRoute(builder: (context)=>NewPage())
-//                );
-                Navigator.pushNamed(context, "new_page");
-              },
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: FlatButton(
+                child: Text("ListView测试!"),
+                color: Colors.grey,
+                textColor: Colors.black,
+                onPressed: () {
+                  Navigator.pushNamed(context, "two_page");
+                },
+              ),
             ),
-            FlatButton(
-              child: Text("Test Async!"),
-              textColor: Colors.green,
-              onPressed: () {
-                TestDart().testAsync();
-              },
+            Container(
+              width: double.infinity,
+              child: FlatButton(
+                child: Text("Test Async!"),
+                color: Colors.grey,
+                textColor: Colors.black,
+                onPressed: () {
+                  TestDart().testAsync();
+                },
+              ),
             ),
-            FlatButton(
-              child: Text("Test Async2!"),
-              textColor: Colors.green,
-              onPressed: () {
-                TestDart().testAsync2();
-              },
+            Container(
+              width: double.infinity,
+              child: FlatButton(
+                child: Text("Test Async2!"),
+                color: Colors.grey,
+                textColor: Colors.black,
+                onPressed: () {
+                  TestDart().testAsync2();
+                },
+              ),
             ),
           ],
         ),
       ),
-
-      resizeToAvoidBottomPadding: true, //输入框抵住键盘 内容不随键盘滚动
     );
   }
 }
