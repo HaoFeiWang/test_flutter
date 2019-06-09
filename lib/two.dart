@@ -1,9 +1,42 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TwoPage extends StatelessWidget {
+class TwoPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return TwoState();
+  }
+}
+
+class TwoState extends State<TwoPage> {
+  bool showTopBtn = false;
+  ScrollController _controller;
+
+  //initState只调用一次
+  @override
+  void initState() {
+    super.initState();
+    print(" ==== init state ==== ");
+    _controller = ScrollController();
+    _controller.addListener(() {
+      if (_controller.offset < 500 && showTopBtn) {
+        setState(() {
+          showTopBtn = false;
+        });
+      } else if (_controller.offset >= 500 && !showTopBtn) {
+        setState(() {
+          showTopBtn = true;
+        });
+      }
+    });
+  }
+
+
+  //build 可能调用多次
   @override
   Widget build(BuildContext context) {
+    print(" ==== build state ==== ");
+
     return Scaffold(
       appBar: AppBar(
         title: Text("ListView测试"),
@@ -13,6 +46,7 @@ class TwoPage extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 30,
         cacheExtent: 10,
+        controller: _controller,
         physics: BouncingScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {
           return _ListItem(index);
@@ -21,7 +55,24 @@ class TwoPage extends StatelessWidget {
           return _SeparatorItem(index);
         },
       ),
+
+      floatingActionButton: showTopBtn
+          ? FloatingActionButton(
+              onPressed: () {
+                _controller.animateTo(.0,
+                    duration: Duration(milliseconds: 200), curve: Curves.ease);
+              },
+              backgroundColor: Colors.red,
+            )
+          : null,
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    //防止内存泄漏
+    _controller.dispose();
   }
 }
 

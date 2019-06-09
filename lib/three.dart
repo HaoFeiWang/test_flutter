@@ -30,18 +30,9 @@ class ThreePageState extends State<ThreePage> {
       //界面的布局主体
       body: Center(
         //将其所有子widget沿屏幕垂直方向依次排列
-        child: Column(
-          //主轴对齐方式
-          mainAxisAlignment: MainAxisAlignment.start,
-          //次轴对齐方式
-          crossAxisAlignment: CrossAxisAlignment.start,
-          verticalDirection: VerticalDirection.down,
-          children: <Widget>[
-            Text(
-              '$counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+        child: Text(
+          '$counter',
+          style: Theme.of(context).textTheme.display1,
         ),
       ),
 
