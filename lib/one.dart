@@ -65,6 +65,17 @@ class OnePage extends StatelessWidget {
             IconButton(icon: Icon(Icons.accessible), onPressed: () => {}),
             Text("TextField 输入框"),
             TextField(),
+            Text("LinearProgressIndicator 进度条"),
+            LinearProgressIndicator(
+              value: 0.5,
+              backgroundColor: Colors.green,
+              valueColor: AlwaysStoppedAnimation(Colors.blue),
+            ),
+            Text("CircularProgressIndicator 进度条"),
+            CircularProgressIndicator(
+              backgroundColor: Colors.green,
+              valueColor: AlwaysStoppedAnimation(Colors.blue),
+            ),
             Text("SingleChildScrollView 滚动布局测试"),
             //Column中嵌套可滚动布局，需要使用Expanded包裹
             Expanded(

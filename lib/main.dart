@@ -1,11 +1,11 @@
 //导入 Material UI 组件库
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:test_flutter/test/TestDart.dart';
 import 'package:test_flutter/three.dart';
 import 'package:test_flutter/two.dart';
 
+import 'six.dart';
 import 'five.dart';
 import 'four.dart';
 import 'one.dart';
@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         "three_page": (context) => ThreePage(),
         "four_page": (context) => FourPage(),
         "five_page": (context) => FivePage(),
+        "six_page": (context) => SixPage(),
       },
 
       //应用首页
@@ -129,6 +130,17 @@ class MyHomePage extends StatelessWidget {
                 textColor: Colors.black,
                 onPressed: () {
                   Navigator.pushNamed(context, "five_page");
+                },
+              ),
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: FlatButton(
+                child: Text("InheritedWidget测试"),
+                color: Colors.grey,
+                textColor: Colors.black,
+                onPressed: () {
+                  Navigator.pushNamed(context, "six_page");
                 },
               ),
             ),
