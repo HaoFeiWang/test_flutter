@@ -14,6 +14,7 @@ class _SixPageStatus extends State<SixPage> {
   }
 }
 
+
 class _InheritedWidgetTestRoute extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
