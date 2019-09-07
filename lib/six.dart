@@ -61,7 +61,11 @@ class _ShareDataWidget extends InheritedWidget {
 
   //定义一个便捷方法，方便子树中的widget获取共享数据
   static _ShareDataWidget of(BuildContext context) {
+    //该方法决定了存在依赖
     return context.inheritFromWidgetOfExactType(_ShareDataWidget);
+
+    //该方法就不存在依赖关系
+    //return context.ancestorInheritedElementForWidgetOfExactType(_ShareDataWidget).widget;
   }
 
   //该回调决定当data发生变化时，是否通知子树中依赖data的Widget
