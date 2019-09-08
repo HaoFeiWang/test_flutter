@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_flutter/test/TestDart.dart';
+import 'package:test_flutter/test_provider.dart';
 import 'package:test_flutter/three.dart';
 import 'package:test_flutter/two.dart';
 
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         "four_page": (context) => FourPage(),
         "five_page": (context) => FivePage(),
         "six_page": (context) => SixPage(),
+        "test_provider": (context) => TestProvider(),
       },
 
       //应用首页
@@ -141,6 +143,17 @@ class MyHomePage extends StatelessWidget {
                 textColor: Colors.black,
                 onPressed: () {
                   Navigator.pushNamed(context, "six_page");
+                },
+              ),
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: FlatButton(
+                child: Text("Provider测试"),
+                color: Colors.grey,
+                textColor: Colors.black,
+                onPressed: () {
+                  Navigator.pushNamed(context, "test_provider");
                 },
               ),
             ),
