@@ -6,7 +6,7 @@ import 'package:test_flutter/test_provider.dart';
 import 'package:test_flutter/three.dart';
 import 'package:test_flutter/two.dart';
 
-import 'six.dart';
+import 'test_inherited.dart';
 import 'five.dart';
 import 'four.dart';
 import 'one.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         "three_page": (context) => ThreePage(),
         "four_page": (context) => FourPage(),
         "five_page": (context) => FivePage(),
-        "six_page": (context) => SixPage(),
+        "test_inherited": (context) => SixPage(),
         "test_provider": (context) => TestProvider(),
       },
 
@@ -142,7 +142,7 @@ class MyHomePage extends StatelessWidget {
                 color: Colors.grey,
                 textColor: Colors.black,
                 onPressed: () {
-                  Navigator.pushNamed(context, "six_page");
+                  Navigator.pushNamed(context, "test_inherited");
                 },
               ),
             ),

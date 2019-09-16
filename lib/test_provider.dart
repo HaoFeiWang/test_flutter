@@ -16,7 +16,10 @@ class _TestProviderState extends State<TestProvider> {
       appBar: AppBar(
         title: Text("测试Provider"),
       ),
+      //ChangeNotifierProvider实际上就是增加了一个InheritedWidget控件
       body: ChangeNotifierProvider<CartModel>(
+
+        //CartModel实际上是一个被观察者ChangeNotifier，内部包含了需要被观察的数据
         data: CartModel(),
         child: Center(
           child: Column(
@@ -56,6 +59,7 @@ class CartModel extends ChangeNotifier {
       _items.fold(0, (value, item) => value + item.count * item.price);
 
   void add(Item item) {
+    print("test_provider add item");
     _items.add(item);
     // 通知监听器（订阅者）
     notifyListeners();
@@ -78,6 +82,7 @@ class InheritedProvider<T> extends InheritedWidget {
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
     //在此简单返回true，则每次更新都会调用依赖其的子孙节点的`didChangeDependencies`。
+    print("test_provider updateShouldNotify");
     return true;
   }
 }
@@ -123,6 +128,7 @@ class _ChangeNotifierProviderState<T extends ChangeNotifier> extends State<Chang
 
   @override
   void didUpdateWidget(ChangeNotifierProvider<T> oldWidget) {
+    print("test_provider didUpdateWidget");
     if (widget.data != oldWidget.data) {
       oldWidget.data.removeListener(update);
       widget.data.addListener(update);
