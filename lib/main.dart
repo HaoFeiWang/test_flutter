@@ -6,6 +6,8 @@ import 'package:test_flutter/test_provider.dart';
 import 'package:test_flutter/three.dart';
 import 'package:test_flutter/two.dart';
 
+import 'async_load_ui.dart';
+import 'auto_calculate_color.dart';
 import 'test_inherited.dart';
 import 'five.dart';
 import 'four.dart';
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
         "five_page": (context) => FivePage(),
         "test_inherited": (context) => SixPage(),
         "test_provider": (context) => TestProvider(),
+        "auto_calculate_color": (context) => AutoCalculateColor(),
+        "asyn_load_ui": (context) => AsyncLoadUI(),
       },
 
       //应用首页
@@ -154,6 +158,28 @@ class MyHomePage extends StatelessWidget {
                 textColor: Colors.black,
                 onPressed: () {
                   Navigator.pushNamed(context, "test_provider");
+                },
+              ),
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: FlatButton(
+                child: Text("CalculateColor测试"),
+                color: Colors.grey,
+                textColor: Colors.black,
+                onPressed: () {
+                  Navigator.pushNamed(context, "auto_calculate_color");
+                },
+              ),
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: FlatButton(
+                child: Text("异步加载UI"),
+                color: Colors.grey,
+                textColor: Colors.black,
+                onPressed: () {
+                  Navigator.pushNamed(context, "asyn_load_ui");
                 },
               ),
             ),
