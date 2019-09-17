@@ -6,7 +6,7 @@ import 'package:test_flutter/test_provider.dart';
 import 'package:test_flutter/three.dart';
 import 'package:test_flutter/two.dart';
 
-import 'async_load_ui.dart';
+import 'future_builder.dart';
 import 'auto_calculate_color.dart';
 import 'test_inherited.dart';
 import 'five.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         "test_inherited": (context) => SixPage(),
         "test_provider": (context) => TestProvider(),
         "auto_calculate_color": (context) => AutoCalculateColor(),
-        "asyn_load_ui": (context) => AsyncLoadUI(),
+        "asyn_load_ui": (context) => TestFutureBuilder(),
       },
 
       //应用首页
