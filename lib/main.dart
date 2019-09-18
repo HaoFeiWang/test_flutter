@@ -1,4 +1,5 @@
 //导入 Material UI 组件库
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:test_flutter/test/TestDart.dart';
@@ -6,6 +7,7 @@ import 'package:test_flutter/test_provider.dart';
 import 'package:test_flutter/three.dart';
 import 'package:test_flutter/two.dart';
 
+import 'dialog.dart';
 import 'future_builder.dart';
 import 'auto_calculate_color.dart';
 import 'test_inherited.dart';
@@ -180,6 +182,17 @@ class MyHomePage extends StatelessWidget {
                 textColor: Colors.black,
                 onPressed: () {
                   Navigator.pushNamed(context, "asyn_load_ui");
+                },
+              ),
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: FlatButton(
+                child: Text("弹框测试"),
+                color: Colors.grey,
+                textColor: Colors.black,
+                onPressed: () {
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => TestDialog()));
                 },
               ),
             ),
